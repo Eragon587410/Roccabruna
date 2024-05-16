@@ -4,7 +4,7 @@ public class Smartphone {
     private int storageCapacity;
     private double price;
 
-    public Smartphone(){
+    public Smartphone() {
         storageCapacity = 0;
         price = 0;
     };
@@ -20,7 +20,6 @@ public class Smartphone {
     public Smartphone(Smartphone other) {
         this(other.getBrand(), other.getModel(), other.getStorageCapacity(), other.getPrice());
     }
-
 
     public void setBrand(String brand) {
         this.brand = brand;
@@ -56,29 +55,36 @@ public class Smartphone {
 
     @Override
     public String toString() {
-        return "Brand: " + getBrand() + ", Model: "+ getModel() + ", Storage Capacity: " + getStorageCapacity() + ", Price: " + getPrice();
+        return "Brand: " + getBrand() + ", Model: " + getModel() + ", Storage Capacity: " + getStorageCapacity()
+                + ", Price: " + getPrice();
     }
 
     @Override
     public boolean equals(Object obj) {
         boolean output = false;
-        if (this == obj){
+        if (this == obj) {
             output = true;
         } else {
-            if (obj instanceof Smartphone){
-                if (this != null){
-                    if (((Smartphone) obj).getBrand() != null && this.getBrand() !=null && ((Smartphone) obj).getModel()!=null && this.getModel()!=null && ((Smartphone) obj).getBrand().equals(this.getBrand()) && ((Smartphone) obj).getModel().equals(this.getModel()) && ((Smartphone) obj).getStorageCapacity() == this.getStorageCapacity() && ((Smartphone) obj).getPrice() == this.getPrice()){
+            if (obj instanceof Smartphone) {
+                if (this != null) {
+                    if (((Smartphone) obj).getBrand() != null && this.getBrand() != null
+                            && ((Smartphone) obj).getModel() != null && this.getModel() != null
+                            && ((Smartphone) obj).getBrand().equals(this.getBrand())
+                            && ((Smartphone) obj).getModel().equals(this.getModel())
+                            && ((Smartphone) obj).getStorageCapacity() == this.getStorageCapacity()
+                            && ((Smartphone) obj).getPrice() == this.getPrice()) {
                         output = true;
-                    } else if (((Smartphone) obj).getStorageCapacity() == this.getStorageCapacity() && ((Smartphone) obj).getPrice() == this.getPrice() && this.getBrand() == ((Smartphone) obj).getBrand() && this.getModel() == ((Smartphone) obj).getModel()){
+                    } else if (((Smartphone) obj).getStorageCapacity() == this.getStorageCapacity()
+                            && ((Smartphone) obj).getPrice() == this.getPrice()
+                            && this.getBrand() == ((Smartphone) obj).getBrand()
+                            && this.getModel() == ((Smartphone) obj).getModel()) {
                         output = true;
                     }
                 }
             }
         }
-        
+
         return output;
     }
 
-    
-    
 }

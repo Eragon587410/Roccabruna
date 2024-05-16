@@ -9,40 +9,39 @@ public class MagazzinoSmartphone {
 
     public MagazzinoSmartphone(MagazzinoSmartphone other) {
         this();
-        if (other!=null){
-            for (int i = 0; i < other.getCount(); i++){
+        if (other != null) {
+            for (int i = 0; i < other.getCount(); i++) {
                 addSmartphone(other.smartphones[i]);
             }
         }
     }
 
-
     public void addSmartphone(Smartphone smartphone) {
-        if (smartphone != null){
+        if (smartphone != null && getCount() < smartphones.length) {
             smartphones[getCount()] = new Smartphone(smartphone);
             count++;
         }
-        
+
     }
 
     public void removeSmartphone(Smartphone smartphone) {
         boolean trovato = false;
         int posizione = 0;
         int i = 0;
-        if (smartphone != null){
-            while (i < getCount() && !trovato){
-                if (this.smartphones[i].equals(smartphone)){
+        if (smartphone != null) {
+            while (i < getCount() && !trovato) {
+                if (this.smartphones[i].equals(smartphone)) {
                     trovato = true;
                     posizione = i;
-                    
+
                 }
                 i++;
             }
-            if (trovato){
-                for (int j = posizione; j < getCount()-1; j++){
-                    smartphones[j] = smartphones[j+1];
+            if (trovato) {
+                for (int j = posizione; j < getCount() - 1; j++) {
+                    smartphones[j] = smartphones[j + 1];
                 }
-                smartphones[getCount()-1] = null;
+                smartphones[getCount() - 1] = null;
                 count--;
             }
         }
@@ -54,18 +53,16 @@ public class MagazzinoSmartphone {
         return smartphoneArray;
     }
 
-
     public Smartphone getSmartphoneByBrand(String brand) {
         Smartphone smartphone = null;
         boolean trovato = false;
         int i = 0;
-        while (i < getCount() && !trovato){
-            if (smartphones[i].getBrand().equals(brand)){
+        while (i < getCount() && !trovato) {
+            if (smartphones[i].getBrand().equals(brand)) {
                 smartphone = new Smartphone(smartphones[i]);
             }
             i++;
         }
-
 
         return smartphone;
     }
@@ -74,8 +71,8 @@ public class MagazzinoSmartphone {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
         boolean trovato = false;
 
-        for (int i = 0; i < getCount(); i++){
-            if (smartphones[i].getStorageCapacity() == storageCapacity){
+        for (int i = 0; i < getCount(); i++) {
+            if (smartphones[i].getStorageCapacity() == storageCapacity) {
                 magazzinoSmartphone.addSmartphone(smartphones[i]);
             }
         }
@@ -87,8 +84,8 @@ public class MagazzinoSmartphone {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
         boolean trovato = false;
 
-        for (int i = 0; i < getCount(); i++){
-            if (smartphones[i].getStorageCapacity() >= minPrice && smartphones[i].getStorageCapacity() <= maxPrice){
+        for (int i = 0; i < getCount(); i++) {
+            if (smartphones[i].getStorageCapacity() >= minPrice && smartphones[i].getStorageCapacity() <= maxPrice) {
                 magazzinoSmartphone.addSmartphone(smartphones[i]);
             }
         }
@@ -100,8 +97,8 @@ public class MagazzinoSmartphone {
     public String toString() {
         String result = "\nMagazzinoSmartphone:\n";
 
-        for (int i = 0; i < getCount(); i++){
-            result += smartphones[i].toString()+"\n";
+        for (int i = 0; i < getCount(); i++) {
+            result += smartphones[i].toString() + "\n";
         }
         return result;
     }
@@ -112,13 +109,13 @@ public class MagazzinoSmartphone {
 
     public boolean equals(Object obj) {
         boolean output = false;
-        if (this == obj){
+        if (this == obj) {
             output = true;
         } else {
-            if (obj instanceof MagazzinoSmartphone){
+            if (obj instanceof MagazzinoSmartphone && ((MagazzinoSmartphone) obj).getCount() == getCount()) {
                 output = true;
-                for (int i = 0; i < ((MagazzinoSmartphone) obj).getCount(); i++){
-                    if (!((MagazzinoSmartphone) obj).smartphones[i].equals(smartphones[i])){
+                for (int i = 0; i < ((MagazzinoSmartphone) obj).getCount(); i++) {
+                    if (!((MagazzinoSmartphone) obj).smartphones[i].equals(smartphones[i])) {
                         output = false;
                     }
                 }
@@ -126,6 +123,5 @@ public class MagazzinoSmartphone {
         }
         return output;
     }
-
 
 }
