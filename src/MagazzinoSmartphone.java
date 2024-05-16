@@ -109,15 +109,19 @@ public class MagazzinoSmartphone {
 
     public boolean equals(Object obj) {
         boolean output = false;
+        int i = 0;
         if (this == obj) {
             output = true;
         } else {
             if (obj instanceof MagazzinoSmartphone && ((MagazzinoSmartphone) obj).getCount() == getCount()) {
                 output = true;
-                for (int i = 0; i < ((MagazzinoSmartphone) obj).getCount(); i++) {
+                boolean trovato = false;
+                while (i < ((MagazzinoSmartphone) obj).getCount() && !trovato) {
                     if (!((MagazzinoSmartphone) obj).smartphones[i].equals(smartphones[i])) {
                         output = false;
+                        trovato = true;
                     }
+                    i++;
                 }
             }
         }
