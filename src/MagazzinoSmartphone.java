@@ -26,24 +26,8 @@ public class MagazzinoSmartphone {
     }
 
     public void removeSmartphone(Smartphone smartphone) {
-        boolean trovato = false;
-        int posizione = 0;
-        int i = 0;
         if (smartphone != null) {
-            while (i < smartphones.size() && !trovato) {
-                if (this.smartphones.get(i).equals(smartphone)) {
-                    trovato = true;
-                    posizione = i;
-
-                }
-                i++;
-            }
-            if (trovato) {
-                for (int j = posizione; j < smartphones.size() - 1; j++) {
-                    smartphones.set(j, smartphones.get(j+1));
-                }
-                smartphones.remove(smartphones.size()-1);
-            }
+            smartphones.remove(smartphone);
         }
     }
 
