@@ -55,7 +55,7 @@ public class Smartphone {
 
     @Override
     public String toString() {
-        return "\nBrand: " + getBrand() + ", Model: " + getModel() + ", Storage Capacity: " + getStorageCapacity()
+        return "Brand: " + getBrand() + ", Model: " + getModel() + ", Storage Capacity: " + getStorageCapacity()
                 + ", Price: " + getPrice()+ "\n";
     }
 

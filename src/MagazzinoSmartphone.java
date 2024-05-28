@@ -1,25 +1,26 @@
+import java.util.ArrayList;
+
 public class MagazzinoSmartphone {
-    private Smartphone[] smartphones;
-    private int count;
+    private ArrayList<Smartphone> smartphones;
+    private static final int LENGHT = 10;
 
     public MagazzinoSmartphone() {
-        smartphones = new Smartphone[10]; // Assuming initial capacity of 10
-        count = 0;
+        smartphones = new ArrayList<Smartphone>(LENGHT); // Assuming initial capacity of 10
+        
     }
 
     public MagazzinoSmartphone(MagazzinoSmartphone other) {
         this();
         if (other != null) {
-            for (int i = 0; i < other.getCount(); i++) {
-                addSmartphone(other.smartphones[i]);
+            for (int i = 0; i < other.smartphones.size(); i++) {
+                addSmartphone(other.smartphones.get(i));
             }
         }
     }
 
     public void addSmartphone(Smartphone smartphone) {
-        if (smartphone != null && getCount() < smartphones.length) {
-            smartphones[getCount()] = new Smartphone(smartphone);
-            count++;
+        if (smartphone != null && smartphones.size() < LENGHT) {
+            smartphones.add(new Smartphone(smartphone));
         }
 
     }
@@ -29,8 +30,8 @@ public class MagazzinoSmartphone {
         int posizione = 0;
         int i = 0;
         if (smartphone != null) {
-            while (i < getCount() && !trovato) {
-                if (this.smartphones[i].equals(smartphone)) {
+            while (i < smartphones.size() && !trovato) {
+                if (this.smartphones.get(i).equals(smartphone)) {
                     trovato = true;
                     posizione = i;
 
@@ -38,18 +39,17 @@ public class MagazzinoSmartphone {
                 i++;
             }
             if (trovato) {
-                for (int j = posizione; j < getCount() - 1; j++) {
-                    smartphones[j] = smartphones[j + 1];
+                for (int j = posizione; j < smartphones.size() - 1; j++) {
+                    smartphones.set(j, smartphones.get(j+1));
                 }
-                smartphones[getCount() - 1] = null;
-                count--;
+                smartphones.remove(smartphones.size()-1);
             }
         }
     }
 
     public Smartphone[] getSmartphonesArray() {
-        Smartphone[] smartphoneArray = new Smartphone[count];
-        System.arraycopy(smartphones, 0, smartphoneArray, 0, count);
+        Smartphone[] smartphoneArray = new Smartphone[smartphones.size()];
+        System.arraycopy(smartphones, 0, smartphoneArray, 0, smartphones.size());
         return smartphoneArray;
     }
 
@@ -57,9 +57,9 @@ public class MagazzinoSmartphone {
         Smartphone smartphone = null;
         boolean trovato = false;
         int i = 0;
-        while (i < getCount() && !trovato) {
-            if (smartphones[i].getBrand().equals(brand)) {
-                smartphone = new Smartphone(smartphones[i]);
+        while (i < smartphones.size() && !trovato) {
+            if (smartphones.get(i).getBrand().equals(brand)) {
+                smartphone = new Smartphone(smartphones.get(i));
             }
             i++;
         }
@@ -71,9 +71,9 @@ public class MagazzinoSmartphone {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
         boolean trovato = false;
 
-        for (int i = 0; i < getCount(); i++) {
-            if (smartphones[i].getStorageCapacity() == storageCapacity) {
-                magazzinoSmartphone.addSmartphone(smartphones[i]);
+        for (int i = 0; i < smartphones.size(); i++) {
+            if (smartphones.get(i).getStorageCapacity() == storageCapacity) {
+                magazzinoSmartphone.addSmartphone(smartphones.get(i));
             }
         }
 
@@ -82,11 +82,10 @@ public class MagazzinoSmartphone {
 
     public MagazzinoSmartphone getSmartphonesByPriceRange(double minPrice, double maxPrice) {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
-        boolean trovato = false;
 
-        for (int i = 0; i < getCount(); i++) {
-            if (smartphones[i].getStorageCapacity() >= minPrice && smartphones[i].getStorageCapacity() <= maxPrice) {
-                magazzinoSmartphone.addSmartphone(smartphones[i]);
+        for (int i = 0; i < smartphones.size(); i++) {
+            if (smartphones.get(i).getPrice() >= minPrice && smartphones.get(i).getPrice() <= maxPrice) {
+                magazzinoSmartphone.addSmartphone(smartphones.get(i));
             }
         }
 
@@ -95,16 +94,12 @@ public class MagazzinoSmartphone {
 
     @Override
     public String toString() {
-        String result = "\nMagazzinoSmartphone:\n";
+        String result = "\nMagazzinoSmartphone:\n\n";
 
-        for (int i = 0; i < getCount(); i++) {
-            result += smartphones[i].toString() + "\n";
+        for (int i = 0; i < smartphones.size(); i++) {
+            result += smartphones.get(i).toString();
         }
         return result;
-    }
-
-    public int getCount() {
-        return count;
     }
 
     public boolean equals(Object obj) {
@@ -113,13 +108,11 @@ public class MagazzinoSmartphone {
         if (this == obj) {
             output = true;
         } else {
-            if (obj instanceof MagazzinoSmartphone && ((MagazzinoSmartphone) obj).getCount() == getCount()) {
+            if (obj instanceof MagazzinoSmartphone && ((MagazzinoSmartphone) obj).smartphones.size() == smartphones.size()) {
                 output = true;
-                boolean trovato = false;
-                while (i < ((MagazzinoSmartphone) obj).getCount() && !trovato) {
-                    if (!((MagazzinoSmartphone) obj).smartphones[i].equals(smartphones[i])) {
+                while (i < ((MagazzinoSmartphone) obj).smartphones.size() && output) {
+                    if (!((MagazzinoSmartphone) obj).smartphones.get(i).equals(smartphones.get(i))) {
                         output = false;
-                        trovato = true;
                     }
                     i++;
                 }
