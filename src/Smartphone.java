@@ -22,11 +22,11 @@ public class Smartphone {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.brand = new String(brand);
     }
 
     public void setModel(String model) {
-        this.model = model;
+        this.model = new String(model);
     }
 
     public void setStorageCapacity(int storageCapacity) {
@@ -58,7 +58,6 @@ public class Smartphone {
         return "Brand: " + getBrand() + ", Model: " + getModel() + ", Storage Capacity: " + getStorageCapacity()
                 + ", Price: " + getPrice()+ "\n";
     }
-
     @Override
     public boolean equals(Object obj) {
         boolean output = false;
@@ -86,5 +85,6 @@ public class Smartphone {
 
         return output;
     }
+    
 
 }

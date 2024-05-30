@@ -41,5 +41,7 @@ public class App {
 
         // Generate test cases for equals method in MagazzinoSmartphone
         System.out.println(magazzinoSmartphone.equals(magazzinoSmartphone2)); // true
+       
+
     }
 }

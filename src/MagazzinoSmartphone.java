@@ -24,11 +24,10 @@ public class MagazzinoSmartphone {
         }
 
     }
-
+    //IL REMOVE DELLA CLASSE ARRAYLIST CERCA DI USARE L'EQUALS DELLA CLASSE DEL PARAMETRO PASSATO PER TROVARE L'OGGETTO, SE NON LO TROVA USA L'EQUALS DI DEFAULT
     public void removeSmartphone(Smartphone smartphone) {
-        if (smartphone != null) {
-            smartphones.remove(smartphone);
-        }
+        smartphones.remove(smartphone);
+        
     }
 
     public Smartphone[] getSmartphonesArray() {
