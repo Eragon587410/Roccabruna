@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MagazzinoSmartphone {
     private ArrayList<Smartphone> smartphones;
@@ -104,4 +105,16 @@ public class MagazzinoSmartphone {
         return output;
     }
 
-}
+    public void ordinaPerPrezzo(){
+        Collections.sort(smartphones);
+    }
+
+    public void ordinaPerBrand(){
+        smartphones.sort((a,b)->{ //questa espressione si chiama lambda expression vede per tutti gli elementi di smarpthones uno alla volta
+            int result = 0;
+            return a.getBrand().compareTo(b.getBrand());
+        });
+    }
+    }
+    
+    

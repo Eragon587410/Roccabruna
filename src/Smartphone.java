@@ -1,4 +1,5 @@
-public class Smartphone {
+
+public class Smartphone implements Comparable<Smartphone> { //da un indicazione al compilatore che la compareTo si aspetta un arraylist di tipo smartphone
     private String brand;
     private String model;
     private int storageCapacity;
@@ -56,8 +57,9 @@ public class Smartphone {
     @Override
     public String toString() {
         return "Brand: " + getBrand() + ", Model: " + getModel() + ", Storage Capacity: " + getStorageCapacity()
-                + ", Price: " + getPrice()+ "\n";
+                + ", Price: " + getPrice() + "\n";
     }
+
     @Override
     public boolean equals(Object obj) {
         boolean output = false;
@@ -85,6 +87,22 @@ public class Smartphone {
 
         return output;
     }
-    
+    //implementazione metodo compareTo(Smartphone a) poer confrontare due oggetti
+    //il primo oggetto è più grande del secondo --> risultato 1
+    //il primo oggetto è uguale al secondo --> risultato 0
+    //il primo oggetto è minore del secondo --> risultato -1
+    public int compareTo(Smartphone s){
+        int risultato = 0;
+            if (getPrice() > s.getPrice()){
+                 risultato = 1;
+            }
+            else if (getPrice() < s.getPrice()){
+                risultato = -1;
+            }
+        
+
+        return risultato;
+
+    }
 
 }
